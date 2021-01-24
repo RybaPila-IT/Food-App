@@ -1,7 +1,6 @@
 import java.sql.*;
 
-
-import oracle.jdbc.pool.OracleDataSource; //sterownik bazy danych Oracle
+import oracle.jdbc.pool.OracleDataSource;
 
 
 public class DatabaseConnector {
@@ -12,9 +11,14 @@ public class DatabaseConnector {
 
     private Connection connection;
 
-    public DatabaseConnector(String user, String password) {
+    public DatabaseConnector(String user, String password) throws SQLException {
+        setConnection(user, password);
+    }
 
+    public void endConnection() throws SQLException {
 
+        connection.close();
+        //System.out.println("Polaczenia z baza danych zamkniete");
 
     }
 
@@ -25,13 +29,17 @@ public class DatabaseConnector {
                 "jdbc:oracle:thin:%s/%s@//%s:%s/%s",
                 user, password, HOST, PORT, SERV);
 
+        //System.out.println(connectionString);
 
+        OracleDataSource ods = new OracleDataSource();
+        ods.setURL(connectionString);
+        connection = ods.getConnection();
 
+        DatabaseMetaData meta = connection.getMetaData();
 
+        //System.out.println("Polaczenie do bazy danych nawiazane.");
+        //System.out.println("Baza danych:" + " " + meta.getDatabaseProductVersion());
 
     }
-
-
-
 
 }

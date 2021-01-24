@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="800.0" prefWidth="450.0" styleClass="pane_app" stylesheets="@../Graphics/LoginPage.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ApplicationPageController">
+   <children>
+      <Button layoutX="116.0" layoutY="14.0" mnemonicParsing="false" text="Restauracje">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Button>
+      <Button layoutX="107.0" layoutY="138.0" mnemonicParsing="false" text="Znajdź menu">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Button>
+      <TextField layoutX="95.0" layoutY="99.0" promptText="Nazwa restauracji">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </TextField>
+      <Button layoutX="149.0" layoutY="250.0" mnemonicParsing="false" text="Zamów">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Button>
+      <TextField layoutX="94.0" layoutY="211.0" promptText="Potrawa 1, Potrawa2, ...">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </TextField>
+   </children>
+</AnchorPane>

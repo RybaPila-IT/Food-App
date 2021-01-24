@@ -4,6 +4,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class LoginPage {
 
@@ -25,7 +26,8 @@ public class LoginPage {
             // Attempt to load board layout.
             Parent root = loader.load();
             this.controller = loader.getController();
-            Scene loggingScene = new Scene(controller.getPane());
+            this.controller.setLoginPageManager(this);
+            Scene loggingScene = new Scene(root);
             this.stage.setScene(loggingScene);
             this.stage.setTitle(TITLE);
 
@@ -44,7 +46,16 @@ public class LoginPage {
 
     public void tryToLogToDatabase(String user, String password) {
 
+        try {
+            DatabaseConnector connector = new DatabaseConnector(user, password);
+            ApplicationPage application = new ApplicationPage(connector);
+            connector.endConnection();
 
+        } catch (SQLException e) {
+            System.err.println("Unable to perform proper connection with Database");
+        } catch (IOException e) {
+            System.err.println("Unable to load FXML file with Application layout");
+        }
 
 
     }

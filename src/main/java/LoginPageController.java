@@ -17,19 +17,19 @@ public class LoginPageController {
     @FXML
     private TextField LoginInput;
 
+    private LoginPage loginPageManager;
+
     public void initialize() {
-
         initButton();
-
     }
 
-    public Parent getPane() {
-        return Pane;
+    public void setLoginPageManager(LoginPage loginPage) {
+        loginPageManager = loginPage;
     }
 
     private void initButton() {
-        LogButton.setOnMouseClicked( value -> {
-        });
+        LogButton.setOnMouseClicked( value ->
+            loginPageManager.tryToLogToDatabase(LoginInput.getText(), PasswordInput.getText()));
     }
 
 }

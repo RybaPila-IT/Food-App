@@ -5,13 +5,27 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="Pane" prefHeight="800.0" prefWidth="450.0" styleClass="pane" stylesheets="@../Graphics/LoginPage.css"
-            xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="LoginPageController">
-   <Button fx:id="LogButton" layoutX="192.0" layoutY="544.0" mnemonicParsing="false" text="Zaloguj"/>
-   <Label layoutX="140.0" layoutY="242.0" text="Login"/>
-   <Label layoutX="140.0" layoutY="396.0" text="Hasło"/>
-   <PasswordField fx:id="PasswordInput" layoutX="140.0" layoutY="452.0"/>
-   <TextField fx:id="LoginInput" layoutX="140.0" layoutY="298.0"/>
+<AnchorPane fx:id="Pane" prefHeight="800.0" prefWidth="450.0" styleClass="pane_log" stylesheets="@../Graphics/LoginPage.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LoginPageController">
+   <Button fx:id="LogButton" layoutX="150.0" layoutY="464.0" mnemonicParsing="false" text="Zaloguj">
+      <font>
+         <Font size="30.0" />
+      </font></Button>
+   <Label layoutX="94.0" layoutY="209.0" text="Login">
+      <font>
+         <Font size="30.0" />
+      </font></Label>
+   <Label layoutX="93.0" layoutY="370.0" text="Hasło">
+      <font>
+         <Font size="30.0" />
+      </font></Label>
+   <PasswordField fx:id="PasswordInput" layoutX="94.0" layoutY="425.0" promptText="Hasło">
+      <font>
+         <Font size="20.0" />
+      </font></PasswordField>
+   <TextField fx:id="LoginInput" layoutX="95.0" layoutY="274.0" promptText="Login">
+      <font>
+         <Font size="20.0" />
+      </font></TextField>
 </AnchorPane>
