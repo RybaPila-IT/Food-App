@@ -1,0 +1,19 @@
+@font-face {
+    src: url(/Graphics/Pacifico.ttf);
+}
+
+.pane {
+    -fx-background-image: url(/Graphics/Background_food.jpeg);
+    -fx-background-color: transparent;
+    -fx-pref-width: 450px;
+    -fx-pref-height: 800px;
+}
+
+.label {
+    -fx-text-fill: red;
+    -fx-font-family: "Pacifico";
+    -fx-alignment: center;
+    -fx-font-size: 30;
+}
+
+

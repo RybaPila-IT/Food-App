@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="Pane" prefHeight="800.0" prefWidth="450.0" styleClass="pane" stylesheets="@../Graphics/LoginPage.css"
+            xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="LoginPageController">
+   <Button fx:id="LogButton" layoutX="192.0" layoutY="544.0" mnemonicParsing="false" text="Zaloguj"/>
+   <Label layoutX="140.0" layoutY="242.0" text="Login"/>
+   <Label layoutX="140.0" layoutY="396.0" text="Hasło"/>
+   <PasswordField fx:id="PasswordInput" layoutX="140.0" layoutY="452.0"/>
+   <TextField fx:id="LoginInput" layoutX="140.0" layoutY="298.0"/>
+</AnchorPane>
