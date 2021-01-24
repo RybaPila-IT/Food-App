@@ -18,10 +18,7 @@ public class DatabaseConnector {
     }
 
     public void endConnection() throws SQLException {
-
         connection.close();
-        //System.out.println("Polaczenia z baza danych zamkniete");
-
     }
 
     public void makeRestaurantsQuery() throws SQLException {
@@ -48,7 +45,10 @@ public class DatabaseConnector {
         System.out.println("Menu z restauracji:");
 
         try {
-            String restaurantID = findRestaurantID(restaurant);
+
+            String restaurantID = getOneRecordWithSpecifiedValue(
+                    "SELECT restaurant_id FROM restaurants WHERE name = ?", restaurant
+            );
 
             PreparedStatement preparedStatement = connection
                     .prepareStatement("select name from meals where restaurant_id = ?");
@@ -67,23 +67,92 @@ public class DatabaseConnector {
             System.err.println("Unable to connect to database. " + e.getMessage());
         }
 
-        Statement stat = connection.createStatement();
+    }
+
+    public void orderMeals(String[] meals) throws SQLException, RuntimeException {
+
+        try {
+
+            connection.setAutoCommit(false);
+
+            String restaurantID = validateMeals(meals);
+            String tableID = getOneRecordWithSpecifiedValue(
+                    "SELECT table_id FROM tables WHERE restaurant_id = ?", restaurantID
+            );
+            
+            System.out.println("Meals are from restaurant: " + restaurantID + " will be added to table with id: " + tableID);
+            
+            PreparedStatement makeOrderStatement = connection
+                    .prepareStatement("insert into orders (restaurant_id, table_id,  order_status_id) values (?, ?, 1) ");
+
+            makeOrderStatement.setString(1, restaurantID);
+            makeOrderStatement.setString(2, tableID);
+            makeOrderStatement.executeQuery();
+
+            String orderID = getOrderID();
+            
+            PreparedStatement addMealsToOrder = connection
+                    .prepareStatement("insert into meals_orders (order_id, meal_id, quantity) values (?, ?, 1)");
+
+            addMealsToOrder.setString(1, orderID);
+            
+            for (String meal : meals) {
+
+                String mealID = getOneRecordWithSpecifiedValue(
+                        "SELECT meal_id FROM meals WHERE name = ?", meal
+                );
+
+                System.out.println("Order id: " + orderID + " meal id: " + mealID);
+                addMealsToOrder.setString(2, mealID);
+                addMealsToOrder.executeQuery();
+            }
+
+            connection.commit();
+
+        } catch (RuntimeException e) {
+            System.err.println(e.getMessage());
+        }
 
 
     }
 
-    private String findRestaurantID(String restaurant) throws SQLException {
+    private String validateMeals(String[] meals) throws SQLException, RuntimeException {
+
+        String restaurantID = "";
+
+        for (String meal : meals) {
+
+            String mealRestID = getOneRecordWithSpecifiedValue(
+                    "SELECT restaurant_id FROM meals WHERE name = ?", meal);
+
+            if (restaurantID.isEmpty())
+                restaurantID = mealRestID;
+            else if (!mealRestID.equals(restaurantID))
+                throw new RuntimeException("Attempt to order meals from different restaurants.");
+        }
+
+        return restaurantID;
+    }
+
+     private String getOrderID() throws SQLException {
+         PreparedStatement preparedStatement = connection
+                 .prepareStatement("SELECT order_id FROM orders WHERE order_id = (select max(order_id) from orders)");
+         ResultSet rs = preparedStatement.executeQuery();
+         rs.next();
+
+         return rs.getString(1);
+     }
+
+    private String getOneRecordWithSpecifiedValue(String query, String value) throws SQLException {
 
         PreparedStatement preparedStatement = connection
-                .prepareStatement("SELECT restaurant_id FROM restaurants WHERE name = ?");
-
-        preparedStatement.setString(1, restaurant);
+                .prepareStatement(query);
+        preparedStatement.setString(1, value);
         ResultSet rs = preparedStatement.executeQuery();
         rs.next();
 
         return rs.getString(1);
     }
-
 
     private void setConnection(String user, String password) throws SQLException {
 
@@ -91,16 +160,9 @@ public class DatabaseConnector {
                 "jdbc:oracle:thin:%s/%s@//%s:%s/%s",
                 user, password, HOST, PORT, SERV);
 
-        //System.out.println(connectionString);
-
         OracleDataSource ods = new OracleDataSource();
         ods.setURL(connectionString);
         connection = ods.getConnection();
-
-        //DatabaseMetaData meta = connection.getMetaData();
-        //System.out.println("Polaczenie do bazy danych nawiazane.");
-        //System.out.println("Baza danych:" + " " + meta.getDatabaseProductVersion());
-
     }
 
 }

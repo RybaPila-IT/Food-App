@@ -27,7 +27,7 @@
             <Font size="30.0" />
          </font>
       </Button>
-      <TextField fx:id="MealsField" layoutX="94.0" layoutY="211.0" promptText="Potrawa 1, Potrawa2, ...">
+      <TextField fx:id="MealsField" layoutX="94.0" layoutY="211.0" promptText="Potrawa 1, Potrawa 2, ...">
          <font>
             <Font size="20.0" />
          </font>

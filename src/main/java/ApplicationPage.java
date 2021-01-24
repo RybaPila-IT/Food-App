@@ -1,3 +1,4 @@
+import javafx.animation.ScaleTransition;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -54,6 +55,15 @@ public class ApplicationPage {
             connector.makeRestaurantsQuery();
         } catch (SQLException e) {
             System.err.println("Unable to get restaurants names. " + e.getMessage());
+        }
+    }
+
+    public void makeOrder(String meal) {
+
+        try {
+            connector.orderMeals(meal.split(", "));
+        } catch (RuntimeException | SQLException e) {
+            System.err.println(e.getMessage());
         }
     }
 

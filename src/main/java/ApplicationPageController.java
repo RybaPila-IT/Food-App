@@ -1,8 +1,6 @@
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
-
 
 public class ApplicationPageController {
 
@@ -22,6 +20,7 @@ public class ApplicationPageController {
     public void initialize() {
         setRestaurantsButton();
         setFindMenuButton();
+        setMakeOrderButton();
     }
 
     public void setApplicationPageManager(ApplicationPage manager) {
@@ -35,6 +34,10 @@ public class ApplicationPageController {
 
     private void setFindMenuButton() {
         FindMenuButton.setOnMouseClicked(event -> manager.showMenu(RestaurantNameField.getText()));
+    }
+
+    private void setMakeOrderButton() {
+        MakeOrderButton.setOnMouseClicked(event -> manager.makeOrder(MealsField.getText()));
     }
 
 
