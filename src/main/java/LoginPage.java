@@ -49,8 +49,8 @@ public class LoginPage {
         try {
             DatabaseConnector connector = new DatabaseConnector(user, password);
             ApplicationPage application = new ApplicationPage(connector);
-            connector.endConnection();
-
+            application.setLoginPageManager(this);
+            stage.close();
         } catch (SQLException e) {
             System.err.println("Unable to perform proper connection with Database");
         } catch (IOException e) {
