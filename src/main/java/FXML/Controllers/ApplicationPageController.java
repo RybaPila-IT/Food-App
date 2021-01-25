@@ -14,6 +14,11 @@ import java.util.Collection;
 
 public class ApplicationPageController {
 
+    private static final String LABEL_TEXT = "Numer twojego zamówienia to: ";
+    private static final String STYLE_SHEET = "/Graphics/LoginPage.css";
+
+    private static final double TABLE_WIDTH = 500.0;
+
     @FXML
     private Button RestaurantsButton;
     @FXML
@@ -39,9 +44,9 @@ public class ApplicationPageController {
 
     public void createPopUpWithOrderID(String orderID) {
 
-        Label label = new Label("Numer twojego zamówienia to: " + orderID);
+        Label label = new Label(LABEL_TEXT + orderID);
         Scene scene = new Scene(label);
-        scene.getStylesheets().add("/Graphics/LoginPage.css");
+        scene.getStylesheets().add(STYLE_SHEET);
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.show();
@@ -51,10 +56,10 @@ public class ApplicationPageController {
 
         ObservableList<String> details = FXCollections.observableArrayList(list);
         TableView<String> tableView = new TableView<>();
-        tableView.setPrefWidth(500.0);
+        tableView.setPrefWidth(TABLE_WIDTH);
 
         TableColumn<String, String> col1 = new TableColumn<>(title);
-        col1.setPrefWidth(498.0);
+        col1.setPrefWidth(TABLE_WIDTH - 2);
         tableView.getColumns().add(col1);
 
         col1.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()));
@@ -62,7 +67,7 @@ public class ApplicationPageController {
 
         StackPane sp = new StackPane(tableView);
         Scene scene = new Scene(sp);
-        scene.getStylesheets().add("/Graphics/LoginPage.css");
+        scene.getStylesheets().add(STYLE_SHEET);
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.show();
@@ -79,6 +84,5 @@ public class ApplicationPageController {
     private void setMakeOrderButton() {
         MakeOrderButton.setOnMouseClicked(event -> manager.makeOrder(MealsField.getText()));
     }
-
 
 }
