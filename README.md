@@ -27,11 +27,11 @@ order number.
 Below one can see screenshots showing the GUI
 of the Food-App.
 
-###Logging Page
+### Logging Page
 ![](src/main/resources/Pictures/LoginPage.png)
 
-###Main Menu
+### Main Menu
 ![](src/main/resources/Pictures/MainMenu.png)
 
-###List of dishes
+### List of dishes
 ![](src/main/resources/Pictures/DishesMenu.png) 
