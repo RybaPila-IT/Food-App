@@ -1,4 +1,6 @@
-import javafx.animation.ScaleTransition;
+package Managers;
+
+import FXML.Controllers.ApplicationPageController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -6,17 +8,18 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Collection;
 
 public class ApplicationPage {
 
     private static final String TITLE = "Food-App";
     private static final String APP_PAGE_PATH = "/FXML/ApplicationPage.fxml";
 
-    private LoginPage loginPage;
+    private final Stage stage;
+    private final DatabaseConnector connector;
+    private final ApplicationPageController controller;
 
-    private Stage stage;
-    private DatabaseConnector connector;
-    private ApplicationPageController controller;
+    private LoginPage loginPage;
 
     public ApplicationPage(DatabaseConnector connector) throws IOException {
 
@@ -39,7 +42,7 @@ public class ApplicationPage {
         } catch (IOException e) {
             System.err.println("Error has occured in App class. Unable to load FXML file with main page.");
             System.err.println("Please, check whether the file " + APP_PAGE_PATH + " exists or is corrupted");
-            throw new RuntimeException("Unable to load ApplicationPage");
+            throw new RuntimeException("Unable to load Managers.ApplicationPage");
         }
 
 
@@ -52,7 +55,8 @@ public class ApplicationPage {
     public void showRestaurants() {
 
         try {
-            connector.makeRestaurantsQuery();
+            Collection<String> restaurants = connector.makeRestaurantsQuery();
+            createPopUpWithTable(restaurants, "Restauracje");
         } catch (SQLException e) {
             System.err.println("Unable to get restaurants names. " + e.getMessage());
         }
@@ -61,8 +65,11 @@ public class ApplicationPage {
     public void makeOrder(String meal) {
 
         try {
-            connector.orderMeals(meal.split(", "));
-        } catch (RuntimeException | SQLException e) {
+            String orderID = connector.orderMeals(meal.split(", "));
+            createPopUpWithOrderID(orderID);
+        } catch (SQLException e) {
+            System.err.println("Unable to make valid order. " + e.getMessage());
+        } catch (RuntimeException e) {
             System.err.println(e.getMessage());
         }
     }
@@ -70,7 +77,8 @@ public class ApplicationPage {
     public void showMenu(String restaurant) {
 
         try {
-            connector.makeMenuForRestaurantQuery(restaurant);
+            Collection<String> menu = connector.makeMenuForRestaurantQuery(restaurant);
+            createPopUpWithTable(menu, "Menu");
         } catch (SQLException e) {
             System.err.println("Unable to perform query. " + e.getMessage());
         }
@@ -87,6 +95,14 @@ public class ApplicationPage {
 
         stage.close();
         loginPage.showLoginPage();
+    }
+
+    private void createPopUpWithOrderID(String orderID) {
+        controller.createPopUpWithOrderID(orderID);
+    }
+
+    private void createPopUpWithTable(Collection<String> list, String title) {
+        controller.createListPopUp(list, title);
     }
 
 

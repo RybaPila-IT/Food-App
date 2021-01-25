@@ -16,7 +16,6 @@
     -fx-pref-height: 800px;
 }
 
-
 .label {
     -fx-text-fill: red;
     -fx-font-family: "Pacifico";
@@ -51,4 +50,35 @@
     -fx-text-fill: white;
     -fx-font-size: 20;
     -fx-background-color: rgba(0, 0, 0, 0.5);
+}
+
+.table-view {
+    -fx-font-size: 20;
+    -fx-background-color: transparent;
+}
+
+.table-view.column-header-background{
+    -fx-background-color: rgba(0, 0, 0, 0.5);
+    -fx-background-radius: 7px 7px 0px 0px;
+    -fx-background-insets: 0 11px 0 0;
+    -fx-padding: 0 0 5px 0;
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+}
+
+.table-row-cell:odd{
+    -fx-font-family: "Pacifico";
+    -fx-text-fill: white;
+    -fx-background-color: rgba(0, 0, 0, 0.5);
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em;
+}
+.table-row-cell:even{
+    -fx-font-family: "Pacifico";
+    -fx-text-fill: white;
+    -fx-background-color: rgba(0, 0, 0, 0.5);
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em;
 }

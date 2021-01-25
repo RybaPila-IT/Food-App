@@ -1,3 +1,6 @@
+package Managers;
+
+import FXML.Controllers.LoginPageController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -13,9 +16,6 @@ public class LoginPage {
 
     private final Stage stage;
 
-    private LoginPageController controller;
-
-
     public LoginPage(Stage stage) {
 
         this.stage = stage;
@@ -25,8 +25,8 @@ public class LoginPage {
         try {
             // Attempt to load board layout.
             Parent root = loader.load();
-            this.controller = loader.getController();
-            this.controller.setLoginPageManager(this);
+            LoginPageController controller = loader.getController();
+            controller.setLoginPageManager(this);
             Scene loggingScene = new Scene(root);
             this.stage.setScene(loggingScene);
             this.stage.setTitle(TITLE);
@@ -35,7 +35,7 @@ public class LoginPage {
             System.err.println("Error has occured in App class. Unable to load FXML file with logging page.");
             System.err.println("Please, check whether the file " + LOGIN_BOARD + " exists or is corrupted");
 
-            throw new RuntimeException("Unable to load LoginPage");
+            throw new RuntimeException("Unable to load Managers.LoginPage");
         }
 
     }

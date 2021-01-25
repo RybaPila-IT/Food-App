@@ -5,8 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="800.0" prefWidth="450.0" styleClass="pane_app" stylesheets="@../Graphics/LoginPage.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ApplicationPageController">
-   <children>
+<AnchorPane prefHeight="800.0" prefWidth="450.0" styleClass="pane_app" stylesheets="@../Graphics/LoginPage.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FXML.Controllers.ApplicationPageController">
       <Button fx:id="RestaurantsButton" layoutX="116.0" layoutY="14.0" mnemonicParsing="false" text="Restauracje">
          <font>
             <Font size="30.0" />
@@ -32,5 +31,4 @@
             <Font size="20.0" />
          </font>
       </TextField>
-   </children>
 </AnchorPane>

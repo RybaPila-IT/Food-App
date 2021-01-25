@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="Pane" prefHeight="800.0" prefWidth="450.0" styleClass="pane_log" stylesheets="@../Graphics/LoginPage.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LoginPageController">
+<AnchorPane prefHeight="800.0" prefWidth="450.0" styleClass="pane_log" stylesheets="@../Graphics/LoginPage.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FXML.Controllers.LoginPageController">
    <Button fx:id="LogButton" layoutX="150.0" layoutY="464.0" mnemonicParsing="false" text="Zaloguj">
       <font>
          <Font size="30.0" />
