@@ -4,6 +4,7 @@ import FXML.Controllers.ApplicationPageController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -12,6 +13,7 @@ import java.util.Collection;
 
 public class ApplicationPage {
 
+    private static final String ICON_PATH = "/Graphics/pizza.png";
     private static final String TITLE = "Food-App";
     private static final String APP_PAGE_PATH = "/FXML/ApplicationPage.fxml";
 
@@ -36,7 +38,9 @@ public class ApplicationPage {
             this.stage = new Stage();
             this.stage.setScene(appScene);
             this.stage.setTitle(TITLE);
+            this.stage.setResizable(false);
             this.stage.show();
+            this.stage.getIcons().add(new Image(ICON_PATH));
             this.stage.setOnCloseRequest(value -> closeApplicationPage());
 
         } catch (IOException e) {

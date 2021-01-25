@@ -4,6 +4,7 @@ import FXML.Controllers.LoginPageController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -11,6 +12,7 @@ import java.sql.SQLException;
 
 public class LoginPage {
 
+    private static final String ICON_PATH = "/Graphics/pizza.png";
     private static final String LOGIN_BOARD = "/FXML/LoginPage.fxml";
     private static final String TITLE = "Food-App";
 
@@ -30,6 +32,8 @@ public class LoginPage {
             Scene loggingScene = new Scene(root);
             this.stage.setScene(loggingScene);
             this.stage.setTitle(TITLE);
+            this.stage.setResizable(false);
+            this.stage.getIcons().add(new Image(ICON_PATH));
 
         } catch (IOException e) {
             System.err.println("Error has occured in App class. Unable to load FXML file with logging page.");

@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
@@ -14,6 +15,7 @@ import java.util.Collection;
 
 public class ApplicationPageController {
 
+    private static final String ICON_PATH = "/Graphics/pizza.png";
     private static final String LABEL_TEXT = "Numer twojego zamówienia to: ";
     private static final String STYLE_SHEET = "/Graphics/LoginPage.css";
 
@@ -48,6 +50,8 @@ public class ApplicationPageController {
         Scene scene = new Scene(label);
         scene.getStylesheets().add(STYLE_SHEET);
         Stage stage = new Stage();
+        stage.getIcons().add(new Image(ICON_PATH));
+        stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
     }
@@ -69,7 +73,9 @@ public class ApplicationPageController {
         Scene scene = new Scene(sp);
         scene.getStylesheets().add(STYLE_SHEET);
         Stage stage = new Stage();
+        stage.setResizable(false);
         stage.setScene(scene);
+        stage.getIcons().add(new Image(ICON_PATH));
         stage.show();
     }
 
